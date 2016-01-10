@@ -5,4 +5,4 @@
 .DS_Store
 /build
 /captures
-TMDBService.java
+/app/src/main/java/me/yogeshwardan/popularmovies/TMDBService.java
