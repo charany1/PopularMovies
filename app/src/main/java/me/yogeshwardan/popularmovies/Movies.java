@@ -10,8 +10,8 @@ import java.util.List;
 public class Movies {
     public int page;
     public List<Result> results = new ArrayList<Result>();
-    public int totalResults;
-    public int totalPages;
+    public int total_results;
+    public int total_pages;
 
 
 }

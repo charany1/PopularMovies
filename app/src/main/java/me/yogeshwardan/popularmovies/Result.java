@@ -8,19 +8,19 @@ import java.util.ArrayList;
 import java.util.List;
 public class Result {
 
-    public String posterPath;
+    public String poster_path;
     public boolean adult;
     public String overview;
-    public String releaseDate;
-    public List<Integer> genreIds = new ArrayList<Integer>();
+    public String release_date;
+    public List<Integer> genre_ids = new ArrayList<Integer>();
     public int id;
-    public String originalTitle;
-    public String originalLanguage;
+    public String original_title;
+    public String original_language;
     public String title;
-    public String backdropPath;
+    public String backdrop_path;
     public float popularity;
-    public int voteCount;
+    public int vote_count;
     public boolean video;
-    public float voteAverage;
+    public float vote_average;
 
 }
