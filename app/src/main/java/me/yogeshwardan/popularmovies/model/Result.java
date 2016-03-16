@@ -1,4 +1,4 @@
-package me.yogeshwardan.popularmovies;
+package me.yogeshwardan.popularmovies.model;
 
 /**
  * Created by yogeshwardancharan on 10/1/16.
