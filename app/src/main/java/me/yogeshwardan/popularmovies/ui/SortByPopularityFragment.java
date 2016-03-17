@@ -32,56 +32,21 @@ import retrofit2.Retrofit;
 import timber.log.Timber;
 
 /**
- * A placeholder fragment containing a simple view.
+ * Created by yogeshwardancharan on 17/3/16.
  */
-public class PopularMoviesFragment extends Fragment {
+public class SortByPopularityFragment extends Fragment {
 
-    public PopularMoviesFragment() {
+    Retrofit retrofit;
+    String sortBy = "popularity.desc";
+
+    public SortByPopularityFragment() {
     }
 
     @Override
     public void  onCreate(Bundle bundle){
-        setHasOptionsMenu(true);
-    }
-
-    String sortBy = "vote_average.desc";
-
-    public boolean onOptionsItemSelected(MenuItem item){
-        int selectedMenuItemId = item.getItemId();
-
-        switch(selectedMenuItemId){
-            case R.id.popularity :
-                sortBy = "popularity.desc";
-                makeApiCall();
-                break;
-            case R.id.rating :
-                sortBy = "vote_average.desc";
-                makeApiCall();
-                break;
-            default:
-                break;
-
-        }
+        super.onCreate(bundle);
 
 
-        return super.onOptionsItemSelected(item);
-
-    }
-
-
-    Retrofit retrofit;
-    View rootView;
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-
-        //get gridview
-        rootView =  inflater.inflate(R.layout.fragment_popular_movies, container, false);
-
-
-
-
-        //API call related stuff
 
         retrofit = new Retrofit.Builder()
                 .baseUrl("http://api.themoviedb.org/")
@@ -89,17 +54,53 @@ public class PopularMoviesFragment extends Fragment {
                 .build();
 
 
+    }
+
+
+    public static SortByPopularityFragment   newInstance(){
+        return new SortByPopularityFragment();
+    }
+
+
+
+
+
+    View rootView;
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+
+        //get gridview
+
+
+
+
+        //API call related stuff
+
+
+        rootView =  inflater.inflate(R.layout.fragment_popular_movies, container, false);
+        makeApiCallAndUpdateGridView(rootView);
 
         return  rootView;
 
     }
 
-    public void makeApiCall(){
+    @Override
+    public void onActivityCreated(Bundle bundle) {
+
+
+        super.onActivityCreated(bundle);
+
+    }
+
+    public void makeApiCallAndUpdateGridView(View rootView){
+
+        final GridView gridView = (GridView)rootView.findViewById(R.id.gridView);
+
 
         TMDBService tmdbService = retrofit.create(TMDBService.class);
         Call<Movies> call =  tmdbService.discover(sortBy);
 
-        final GridView gridView = (GridView)rootView.findViewById(R.id.gridView);
 
 
         call.enqueue(new Callback<Movies>() {
@@ -111,12 +112,6 @@ public class PopularMoviesFragment extends Fragment {
                 MovieAdapter movieAdapter = new MovieAdapter(getContext(),results );
 
                 gridView.setAdapter(movieAdapter);
-                Timber.d("Size of results : %d", results.size());
-                String posterPath = results.get(0).poster_path;
-                if (posterPath != null)
-                    Timber.d("Poster Path = %s", posterPath);
-                else
-                    Timber.d("Poster Path is null");
 
             }
 

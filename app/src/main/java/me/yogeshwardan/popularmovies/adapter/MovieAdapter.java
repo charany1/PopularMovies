@@ -16,7 +16,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import me.yogeshwardan.popularmovies.R;
 import me.yogeshwardan.popularmovies.model.Result;
-import me.yogeshwardan.popularmovies.ui.PopularMoviesFragment;
+
 
 /**
  * Created by yogeshwardancharan on 16/3/16.

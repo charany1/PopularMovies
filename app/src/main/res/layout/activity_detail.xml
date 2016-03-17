@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="me.yogeshwardan.popularmovies.ui.PopularMovies"
-    android:id="@+id/movies_activity_layout">
+    tools:context="me.yogeshwardan.popularmovies.ui.DetailActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -21,11 +20,8 @@
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     </android.support.design.widget.AppBarLayout>
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/fragment_container"></FrameLayout>
 
+    <include layout="@layout/content_detail" />
 
 
 </android.support.design.widget.CoordinatorLayout>
