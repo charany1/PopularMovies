@@ -8,8 +8,13 @@ import retrofit2.http.Query;
 /**
  * Created by yogeshwardancharan on 11/1/16.
  */
+
+/*
+* Interface required by Retrofit to convert REST API calls to Java Interface.
+*
+* */
 public interface TMDBService {
 
-    @GET("3/discover/movie?api_key=f00376bc772927dd62576939bc5c1321")
+    @GET("3/discover/movie?api_key="+Constants.API_KEY)
     Call<Movies> discover(@Query("sort_by") String sortBy);
 }

@@ -16,6 +16,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import me.yogeshwardan.popularmovies.R;
 import me.yogeshwardan.popularmovies.model.Result;
+import me.yogeshwardan.popularmovies.util.Constants;
 
 
 /**
@@ -40,7 +41,7 @@ public class MovieAdapter extends ArrayAdapter<Result> {
 
         }
         String posterPath = result.poster_path;
-        String imageURL = "http://image.tmdb.org/t/p/w185/"+posterPath;
+        String imageURL = Constants.IMAGE_PATH_BASE_URL+posterPath;
         ImageView mPosterImageView = (ImageView)convertView.findViewById(R.id.poster_image);
         Picasso.with(getContext()).load(imageURL).into(mPosterImageView);
         //mPosterImageView.setImageResource(R.drawable.place_holder_poster);

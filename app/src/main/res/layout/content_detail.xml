@@ -18,7 +18,9 @@
         android:id="@+id/backdropIV"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.4"/>
+        android:layout_weight="0.4"
+        android:src="@drawable/place_holder_poster"
+        />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -49,7 +51,8 @@
                         android:id="@+id/imageIV"
                         android:layout_width="130dp"
                         android:layout_height="180dp"
-                        android:layout_marginRight="5dp"/>
+                        android:layout_marginRight="5dp"
+                        android:src="@drawable/place_holder_poster"/>
 
                     <LinearLayout
                         android:layout_width="fill_parent"
@@ -63,28 +66,28 @@
                             android:textStyle="bold"
                             android:textSize="20sp"
                             android:layout_weight="4"
-                            android:text="Star Wars: The Force Awakens"/>
+                            android:text="Name of Movie"/>
 
                         <TextView
                             android:id="@+id/relaseDateTV"
                             android:layout_width="wrap_content"
                             android:layout_height="0dp"
                             android:layout_weight="2"
-                            android:text="Star Wars: The Force Awakens"/>
+                            android:text="Release Date"/>
 
                         <TextView
                             android:id="@+id/ratingTV"
                             android:layout_width="wrap_content"
                             android:layout_height="0dp"
                             android:layout_weight="2"
-                            android:text="Star Wars: The Force Awakens"/>
+                            android:text="Rating"/>
 
                         <TextView
                             android:id="@+id/popularityTV"
                             android:layout_width="wrap_content"
                             android:layout_height="0dp"
                             android:layout_weight="2"
-                            android:text="Star Wars: The Force Awakens"/>
+                            android:text="Popularity"/>
                     </LinearLayout>
 
                 </LinearLayout>
