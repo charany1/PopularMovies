@@ -38,7 +38,7 @@ import timber.log.Timber;
 public class SortByRatingFragment extends Fragment {
 
     RetrofitConfig mRetrofitConfig;
-    String sortBy = "vote_average.desc";
+    String sortBy = "top_rated";
 
     public SortByRatingFragment() {
     }

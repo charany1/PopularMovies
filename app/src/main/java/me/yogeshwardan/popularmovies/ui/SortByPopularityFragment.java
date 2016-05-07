@@ -42,7 +42,7 @@ import timber.log.Timber;
 public class SortByPopularityFragment extends Fragment  {
 
     RetrofitConfig mRetrofitConfig;
-    String sortBy = "popularity.desc";
+    String sortBy = "popular";
 
     ArrayList<Result> mResults;
 

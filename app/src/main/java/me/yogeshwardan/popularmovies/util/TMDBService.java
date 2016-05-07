@@ -3,6 +3,7 @@ package me.yogeshwardan.popularmovies.util;
 import me.yogeshwardan.popularmovies.model.Movies;
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 /**
@@ -15,6 +16,6 @@ import retrofit2.http.Query;
 * */
 public interface TMDBService {
 
-    @GET("3/discover/movie?api_key="+Constants.API_KEY)
-    Call<Movies> discover(@Query("sort_by") String sortBy);
+    @GET("movie/{sortBy}?api_key="+Constants.API_KEY)
+    Call<Movies> discover(@Path("sortBy") String sortBy);
 }

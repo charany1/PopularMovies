@@ -30,7 +30,7 @@ import timber.log.Timber;
  */
 
 /*
-* Feature functionality required for API call using Retrofit and populating views .
+*Has functionality required for API call using Retrofit and populating views .
 *
 * */
 public class RetrofitConfig implements AdapterView.OnItemClickListener {
