@@ -1,20 +1,22 @@
 
 
-    <GridView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/gridView"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    android:scrollbars="vertical"
+    tools:context=".ui.PopularMovies"
+    android:id="@+id/movies_relative_layout"
+    >
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:numColumns="2"
-        android:gravity="center"
-        android:horizontalSpacing="8dp"
-        android:verticalSpacing="8dp"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp"
-        tools:context="me.yogeshwardan.popularmovies.ui.PopularMoviesFragment"
-        tools:showIn="@layout/activity_popular_movies">
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical" />
 
-    </GridView>
+</RelativeLayout>
+
 
