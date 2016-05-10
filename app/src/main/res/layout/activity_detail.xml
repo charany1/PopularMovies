@@ -24,4 +24,18 @@
     <include layout="@layout/content_detail" />
 
 
+    <com.github.clans.fab.FloatingActionButton
+        android:id="@+id/favorite_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_marginBottom="8dp"
+        android:layout_marginRight="8dp"
+        android:src="@drawable/star"
+        app:fab_colorNormal="@color/accent"
+
+       />
+
+
+
 </android.support.design.widget.CoordinatorLayout>

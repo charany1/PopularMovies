@@ -18,7 +18,8 @@
             android:id="@+id/poster_image"
             android:src="@drawable/place_holder_poster"
             android:contentDescription="poster"
-            android:layout_weight="0.9">
+            android:layout_weight="0.9"
+            android:scaleType="fitXY">
 
         </ImageView>
 

@@ -3,7 +3,7 @@ package me.yogeshwardan.popularmovies.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.support.design.widget.FloatingActionButton;
+import com.github.clans.fab.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -16,6 +16,7 @@ import com.squareup.picasso.Picasso;
 import org.parceler.Parcels;
 
 import butterknife.Bind;
+import butterknife.BindInt;
 import butterknife.ButterKnife;
 import me.yogeshwardan.popularmovies.R;
 import me.yogeshwardan.popularmovies.model.Result;
@@ -32,6 +33,9 @@ public class DetailActivity extends AppCompatActivity {
     @Bind(R.id.ratingTV) TextView mRatingTextView;
     @Bind(R.id.popularityTV) TextView mPopularityTextView;
     @Bind(R.id.overviewTV) TextView mOverViewTextView;
+
+    //Floating action button for Favoriting a movie
+    @Bind(R.id.favorite_fab) FloatingActionButton mFavoriteFab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,8 +69,17 @@ public class DetailActivity extends AppCompatActivity {
         }
 
 
+        //Configuring listener on fab : save movie details in SharePreferences
+        mFavoriteFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //star_outline drawable is used to represent that movie is favorite .
+                mFavoriteFab.setImageDrawable(getResources().getDrawable(R.drawable.star_outline));
+            }
+        });
 
 
     }
+
 
 }
