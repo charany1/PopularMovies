@@ -31,7 +31,7 @@ public class SortByPopularityFragment extends Fragment  {
     private View mRootView;
 
 
-    ArrayList<Result> mResults;
+
 
     public SortByPopularityFragment() {
     }

@@ -2,21 +2,33 @@ package me.yogeshwardan.popularmovies.ui;
 
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 
+import java.util.ArrayList;
+
 import me.yogeshwardan.popularmovies.R;
+import me.yogeshwardan.popularmovies.model.Result;
 import me.yogeshwardan.popularmovies.util.RetrofitConfig;
 
 /**
  * A placeholder fragment containing a simple view.
  */
 public class SortByRatingFragment extends Fragment {
+    public static final int SPAN_SIZE = 2;
+
 
     private RetrofitConfig mRetrofitConfig;
     private String mSortBy = "top_rated";
+    private View mRootView;
+
+
+
+
 
     public SortByRatingFragment() {
     }
@@ -45,12 +57,17 @@ public class SortByRatingFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View rootView;
+        mRootView = inflater.inflate(R.layout.fragment_popular_movies, container, false);
 
-        rootView =  inflater.inflate(R.layout.fragment_popular_movies, container, false);
-        mRetrofitConfig.makeApiCallAndPopulateRecycleriew(rootView);
+        //configuring recyclerView :we set GridLayoutManager on recylerView here
+        // adapter is set in RetrofitConfit#makeApiCallAndPopulateRecycleriew
+        RecyclerView recyclerView = (RecyclerView) mRootView.findViewById(R.id.recycler_view);
+        RecyclerView.LayoutManager gridLayoutManager = new GridLayoutManager(getContext(),SPAN_SIZE);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(gridLayoutManager);
+        mRetrofitConfig.makeApiCallAndPopulateRecycleriew(recyclerView);
 
-        return  rootView;
+        return mRootView;
 
     }
 

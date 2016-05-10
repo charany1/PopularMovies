@@ -34,6 +34,11 @@ import timber.log.Timber;
  * */
 public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewHolder> {
 
+    //to store position of movie item clicked,intialized in onBindViewHolder callback
+    //made static because MovieViewHolder class is static
+    //TODO : see if its right approach to follow
+
+
 
     private List<Result> mMovieResults = null;
     private Context mContext = null;
@@ -48,7 +53,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
         TextView mTitleTextView;
         TextView mRatingTextView;
         ViewHolderItemClickListener mViewHolderItemClickListener;
-        int mPostion;
+        //int mPostion;
 
         /**
          * Constructor
@@ -75,7 +80,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
          */
         @Override
         public void onClick(View view) {
-            mViewHolderItemClickListener.onItemClick();
+            mViewHolderItemClickListener.onItemClick(this.getLayoutPosition());
         }
 
 
@@ -84,7 +89,12 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
          *
          */
         public  interface ViewHolderItemClickListener{
-            public void onItemClick();
+            /**
+             * Called when a movie item is clicked .
+             * @param position : position of movie item in mMovieResults list,intialized in
+             *                 onBindViewHolder
+             * */
+            public void onItemClick(int position);
 
 
         }
@@ -97,7 +107,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
 
 
     /**
-     * Called when RecyclerView needs a new {@link ViewHolder} of the given type to represent
+     * Called when RecyclerView needs a new {@link iewHolder} of the given type to represent
      * an item.
      * <p/>
      * This new ViewHolder should be constructed with a new View that can represent the items
@@ -121,14 +131,14 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
         View movieView = LayoutInflater.from(mContext).inflate(R.layout.movie_item,parent,false);
         final MovieViewHolder movieViewHolder = new MovieViewHolder(movieView, new MovieViewHolder.ViewHolderItemClickListener() {
             @Override
-            public void onItemClick() {
+            public void onItemClick(int position) {
                 //TODO : getPosition in deprecated , try another approacho of storing position in
                 // an int and updating it in onBindViewHolder
                 // see this : http://stackoverflow.com/questions/24885223/why-doesnt-recyclerview-have-onitemclicklistener-and-how-recyclerview-is-dif
 
                 Timber.d("Might crahs with NPE : movieViewHolder might not be initalized");
 
-                Result movie = mMovieResults.get(mPosition);
+                Result movie = mMovieResults.get(position);
 
                 if(movie == null){
                     Timber.d("Result == null");
@@ -193,7 +203,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
 
         //setting rating text view
         holder.mRatingTextView.setText(new Float(movieResult.vote_average).toString());
-        holder.mPostion = position;
+
 
 
 
