@@ -7,16 +7,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridView;
-
-
-import java.util.ArrayList;
 
 
 import me.yogeshwardan.popularmovies.R;
-import me.yogeshwardan.popularmovies.adapter.MoviesAdapter;
-import me.yogeshwardan.popularmovies.model.Result;
-import me.yogeshwardan.popularmovies.util.RetrofitConfig;
+import me.yogeshwardan.popularmovies.network.RetrofitConfig;
 
 /**
  * Created by yogeshwardancharan on 17/3/16.
@@ -66,12 +60,12 @@ public class SortByPopularityFragment extends Fragment  {
         mRootView = inflater.inflate(R.layout.fragment_popular_movies, container, false);
 
         //configuring recyclerView :we set GridLayoutManager on recylerView here
-        // adapter is set in RetrofitConfit#makeApiCallAndPopulateRecycleriew
+        // adapter is set in RetrofitConfit#makeApiCallAndPopulateRecyclerView
         RecyclerView recyclerView = (RecyclerView) mRootView.findViewById(R.id.recycler_view);
         RecyclerView.LayoutManager gridLayoutManager = new GridLayoutManager(getContext(),SPAN_SIZE);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(gridLayoutManager);
-        mRetrofitConfig.makeApiCallAndPopulateRecycleriew(recyclerView);
+        mRetrofitConfig.makeApiCallAndPopulateRecyclerView(recyclerView);
 
         return mRootView;
 

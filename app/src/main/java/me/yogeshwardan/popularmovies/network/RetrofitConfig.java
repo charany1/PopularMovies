@@ -1,4 +1,4 @@
-package me.yogeshwardan.popularmovies.util;
+package me.yogeshwardan.popularmovies.network;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import me.yogeshwardan.popularmovies.adapter.MoviesAdapter;
 import me.yogeshwardan.popularmovies.model.Movies;
 import me.yogeshwardan.popularmovies.model.Result;
+import me.yogeshwardan.popularmovies.util.Constants;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.GsonConverterFactory;
@@ -54,7 +55,7 @@ public class RetrofitConfig {
     * with the help of MoviesAdapter.
     * */
 
-    public void makeApiCallAndPopulateRecycleriew(final RecyclerView recyclerView){
+    public void makeApiCallAndPopulateRecyclerView(final RecyclerView recyclerView){
         Timber.d("makeApiCallAndPopulateRecyclerView() starts!");
 
         TMDBService tmdbService = retrofit.create(TMDBService.class);
@@ -68,7 +69,7 @@ public class RetrofitConfig {
                 Timber.d("Got response ,code : %d",response.code());
                 Movies movies = response.body();
                 mResults = (ArrayList) movies.results;
-                //set Adapter on recylerView
+                //set Adapter on recyclerView
                 MoviesAdapter moviesAdapter = new MoviesAdapter(mResults,mContext);
                 recyclerView.setAdapter(moviesAdapter);
             }

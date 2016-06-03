@@ -9,6 +9,10 @@ import org.parceler.Parcel;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Bean for Result containing movie list from TMDB api .
+ * */
+
 @Parcel
 public class Result {
 
