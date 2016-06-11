@@ -25,7 +25,7 @@ import me.yogeshwardan.popularmovies.util.Constants;
 public class DetailActivity extends AppCompatActivity {
 
 
-    //Bind Viw using butterknife.
+    //Bind View using Butterknife.
     @Bind(R.id.backdropIV) ImageView mBackgroundImageView;
     @Bind(R.id.imageIV) ImageView  mSmallImageView;
     @Bind(R.id.nameTV) TextView mNameTextView ;

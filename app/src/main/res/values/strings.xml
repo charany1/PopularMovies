@@ -7,4 +7,5 @@
     <string name="most_popular">Highest Popularity</string>
     <string name="most_rated">Highest Rated</string>
     <string name="title_activity_detail">DetailActivity</string>
+    <string name="favorite">Favorite</string>
 </resources>
