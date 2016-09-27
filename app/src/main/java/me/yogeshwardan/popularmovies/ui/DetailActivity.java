@@ -42,6 +42,8 @@ public class DetailActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Timber.d("onCreate Called");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -86,7 +88,7 @@ public class DetailActivity extends AppCompatActivity {
         final DBHelper dbHelper = new DBHelper(getApplicationContext(),DBHelper.DATABASE_NAME,null,DBHelper.DATABASE_VERSION);
 
 
-        //Configuring listener on fab : save movie details in SharePreferences
+        //Configuring listener on fab : save movie details in sqlite db
         mFavoriteFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

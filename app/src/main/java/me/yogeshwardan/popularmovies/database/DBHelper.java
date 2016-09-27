@@ -6,13 +6,20 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import timber.log.Timber;
+
 /**
  * Created by yogeshwardancharan on 16/7/16.
  */
+
+
+/**
+ * Class for handling access to sqlite db of favorite movies.
+ * */
 public class DBHelper extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "FavoriteMovies.db";
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 3;
     public static final String FAVORITE_MOVIES_TABLE_NAME = "favorite_movies";
     public static final String FAVORITE_MOVIES_COLUMN_ID = "_id";
     public static final String FAVORITE_MOVIES_COLUMN_TITLE = "title";
@@ -50,14 +57,19 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        db.execSQL("CREATE TABLE " + FAVORITE_MOVIES_TABLE_NAME + "(" +
-                FAVORITE_MOVIES_COLUMN_ID + " INTEGER PRIMARY KEY, " +
+
+        Timber.d("onCreate Called");
+
+        String createTableSql = "CREATE TABLE " + FAVORITE_MOVIES_TABLE_NAME + "(" +
                 FAVORITE_MOVIES_COLUMN_TITLE + " TEXT, " +
                 FAVORITE_MOVIE_COLUMN_USER_RATING + " TEXT, " +
-                FAVORITE_MOVIE_COLUMN_SYNOPSIS + " TEXT,"+
-                FAVORITE_MOVIE_COLUMN_RELEASE_DATE+ "TEXT," +
-                FAVORITE_MOVIE_COLUMN_POSTER_PATH+ "TEXT)"
-        );
+                FAVORITE_MOVIE_COLUMN_SYNOPSIS + " TEXT, "+
+                FAVORITE_MOVIE_COLUMN_RELEASE_DATE+ " TEXT, " +
+                FAVORITE_MOVIE_COLUMN_POSTER_PATH+ " TEXT )";
+
+        Timber.d("createTableSql  : "+createTableSql);
+
+        db.execSQL(createTableSql);
 
     }
 
@@ -83,6 +95,8 @@ public class DBHelper extends SQLiteOpenHelper {
      */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+
+        Timber.d("onUpgrade Called!");
         db.execSQL("DROP TABLE IF EXISTS " + FAVORITE_MOVIES_TABLE_NAME);
         onCreate(db);
 
@@ -99,13 +113,16 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put(FAVORITE_MOVIE_COLUMN_RELEASE_DATE, releaseDate);
         contentValues.put(FAVORITE_MOVIE_COLUMN_SYNOPSIS, synopsis);
         contentValues.put(FAVORITE_MOVIE_COLUMN_USER_RATING,userRating);
-        db.insert(FAVORITE_MOVIES_TABLE_NAME, null, contentValues);
-        return true;
+        if(db.insert(FAVORITE_MOVIES_TABLE_NAME, null, contentValues) != -1) {
+            return true;
+        }else{
+            return false;
+        }
     }
 
     /**
      * Returns Cursor to get all favorited movies.
-     * */
+     */
 
     public Cursor getAllFavoriteMovies(){
         SQLiteDatabase db = getReadableDatabase();
