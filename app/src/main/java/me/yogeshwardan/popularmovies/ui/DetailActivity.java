@@ -17,10 +17,12 @@ import com.squareup.picasso.Picasso;
 import org.parceler.Parcels;
 
 import butterknife.Bind;
-import butterknife.BindInt;
 import butterknife.ButterKnife;
+import io.realm.RealmResults;
 import me.yogeshwardan.popularmovies.R;
-import me.yogeshwardan.popularmovies.database.DBHelper;
+import me.yogeshwardan.popularmovies.database.RealmHelper;
+import me.yogeshwardan.popularmovies.listeners.FavoriteMovieInsertedListener;
+import me.yogeshwardan.popularmovies.model.FavoriteMovie;
 import me.yogeshwardan.popularmovies.model.Result;
 import me.yogeshwardan.popularmovies.util.Constants;
 import timber.log.Timber;
@@ -82,24 +84,27 @@ public class DetailActivity extends AppCompatActivity {
             mOverViewTextView.setText("No Overview recieved!");
         }
 
-
-        //Initializing DBHelper
-
-        final DBHelper dbHelper = new DBHelper(getApplicationContext(),DBHelper.DATABASE_NAME,null,DBHelper.DATABASE_VERSION);
-
-
         //Configuring listener on fab : save movie details in sqlite db
         mFavoriteFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //star_outline drawable is used to represent that movie is favorite .
                 mFavoriteFab.setImageDrawable(getResources().getDrawable(R.drawable.star_outline));
-                if(dbHelper.insertFavoriteMovie(mTitle,mRating,mSynopsis,mReleaseDate,mPosterPath)){
-                    Toast.makeText(DetailActivity.this, "Movie favorited/inserted", Toast.LENGTH_SHORT).show();
-                    Timber.d("Movie favorited/inserted");
-                }else{
-                    Toast.makeText(DetailActivity.this, "Movie insertion failed", Toast.LENGTH_SHORT).show();
-                }
+
+                RealmHelper.insertFavoriteMovie(mTitle, mRating, mSynopsis, mReleaseDate, mPosterPath, new FavoriteMovieInsertedListener() {
+                    @Override
+                    public void onSucces() {
+                        Toast.makeText(DetailActivity.this, "Movie favorited/inserted", Toast.LENGTH_SHORT).show();
+                        Timber.d("Movie favorited/inserted");
+                    }
+
+                    @Override
+                    public void onFailure() {
+                        Toast.makeText(DetailActivity.this, "Movie insertion failed", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+
             }
         });
 
