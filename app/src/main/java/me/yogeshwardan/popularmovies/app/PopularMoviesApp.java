@@ -8,6 +8,7 @@ import com.facebook.stetho.DumperPluginsProvider;
 import com.facebook.stetho.Stetho;
 import com.facebook.stetho.dumpapp.DumperPlugin;
 
+import io.realm.Realm;
 import timber.log.Timber;
 
 /**
@@ -32,6 +33,8 @@ public class PopularMoviesApp extends Application {
                 })
                 .enableWebKitInspector(Stetho.defaultInspectorModulesProvider(this))
                 .build());
+
+        Realm.init(context);
     }
 
 }
